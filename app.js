@@ -1,3 +1,4 @@
+'use strict';
 // Конфиурация и настройка параметров для логирования
 var config = require('./config');
 process.env.NODE_ENV = config.get('node_env');
@@ -17,7 +18,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes'); // Контроллер
 
+var mongoose = require('./lib/mongoose');
+var compression = require('compression');
+
+
+
 var app = express();
+
+//GZIP compression
+app.use(compression()); //
 
 // Задаем env
 app.set('env', process.env.NODE_ENV || config.get('node_env'));
@@ -31,8 +40,8 @@ app.set('view engine', 'pug');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger(('dev')));                 // todo: logger - различные форматы dev, default, common, combined
-//app.use(bodyParser.json());               // req.body....
-//app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());               // req.body....
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());                  // req.coolies... // todo: cookieParser('your secret')
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -58,7 +67,13 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  //res.render('error');
+
+    res.writeHead(200, {"Content-Type": "application/json"});
+    var json = JSON.stringify({
+        Error: err
+    });
+    res.end(json);
 });
 
 module.exports = app;

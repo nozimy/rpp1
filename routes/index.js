@@ -18,6 +18,8 @@ router.get('/signin', require('./signin').get);
 //   res.render('index', {title: 'Express' });
 //
 // });
+router.get('/user/:username', require('./user-route').getOne);
+
 
 
 module.exports = router;
