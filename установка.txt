@@ -1,0 +1,76 @@
+  install nodejs		| v6.9.5
+  npm install express 	| 4.14.1
+  express -v -c --git  |process.env.NODE_ENV == production or development
+  cd . && npm install
+  SET DEBUG=lavka:* & npm start
+  указать перем окружения NODE_PATH=. для нахождения модуля config/index в текущей директории
+
+    /*TODO tasks
+    study routers,
+    */
+
+  MODULES (51 шт.)
+  - accepts
+  - array-flatten
+  - basic-auth
+  - body-parser
+  - bytes
+  - content-disposition
+  - content-type
+  - cookie
+  - cookie-parser
+  - cookie-signature
+  - debug
+  - depd
+  - destroy
+  - ee-first
+  - encodeurl
+  - escape-html
+  - etag
+  - express
+  - finalhandler
+  - forwarded
+  - fresh
+  - http-errors
+  - iconv-lite
+  - inherits
+  - ipaddr.js
+  - media-typer
+  - merge-descriptors
+  - methods
+  - mime
+  - mime-db
+  - mime-types
+  - morgan
+  - ms
+  - negotiator
+  - on-finished
+  - on-headers
+  - parseurl
+  - path-to-regexp
+  - proxy-addr
+  - qs
+  - range-parser
+  - raw-body
+  - send
+  - serve-favicon
+  - serve-static
+  - setprototypeof
+  - statuses
+  - type-is
+  - unpipe
+  - utils-merge
+  - vary
+  ---------------------------------------------------
+  - pug (Прежнее название Jade) (+12 шт. -> pug-...)
+  - nconf
+  - bower
+
+
+
+
+
+
+
+
+  

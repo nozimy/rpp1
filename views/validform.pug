@@ -1,0 +1,32 @@
+extends layouts/layout
+
+block custom_head
+    link(href='./style/validform.css', rel='stylesheet')
+
+block content
+    .container
+        .col-md-6
+            h2.header Форма заказа
+
+            form.form-horizontal
+                .form-group
+                    label.col-sm-2.control-label(for='inputName') Имя
+                    .col-sm-10
+                        input#inputName.form-control(name='name', type='text', placeholder='Имя')
+                .form-group
+                    label.col-sm-2.control-label(for='inputEmail') Email
+                    .col-sm-10
+                        input#inputEmail.form-control(name='email', type='email', placeholder='Email')
+                .form-group
+                    label.col-sm-2.control-label(for='inputEmail') Телефон
+                    .col-sm-10
+                        input#inputPhone.form-control(name='phone', type='text', placeholder='Телефон')
+                .form-group
+                    .col-sm-offset-2.col-sm-10
+                        button.btn.btn-success(type='submit') Отправить
+
+
+
+block custom_js
+    script(type='text/javascript',src='./js/validform.js')
+

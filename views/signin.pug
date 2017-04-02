@@ -1,0 +1,117 @@
+extends layouts/layout
+block custom_head
+    link(href='./style/signin.css', rel='stylesheet')
+
+block content
+    .container-fluid.text-center
+        .tabpannel.div-sign
+            ul.nav.nav-tabs(role='tablist')
+                li.active(role='presentation')
+                    a(href='#signin', aria-controls='signin', role= 'tab', data-toogle='tab') Вход
+                li(role='presentation')
+                    a(href='#signup',aria-controls='signup', role= 'tab', data-toogle='tab') Регистрация
+        .tab-content.div-sign
+            #signin.tab-pane.active(role= 'tabpannel')
+                form#signinForm.form-signin(name= 'signin', method= 'POST',action= '/auth')
+                    .form-group
+                        label(for='inputEmail') Адрес Email
+                        input#inputEmail.form-control(name='email', type='email', placeholder='Например: ivan@mail.ru', required, autofocus)
+                    .form-group
+                        label(for='inputPassword') Пароль
+                        input#inputPassword.form-control(type='password', placeholder='Пароль', required)
+                    //- .checkbox
+                        label
+                            input(type='checkbox', value='remember-me')
+                            |  Запомнить
+                    button.btn.btn-lg.btn-primary.btn-block(type='submit') Войти
+
+            #signup.tab-pane(role= 'tabpannel')
+                form#signupForm.form-signin(name= 'signup', method= 'POST',  action= '/register')
+                    .form-group
+                        label(for='Email') Адрес Email
+                        input#email.form-control(type='email', placeholder='Например: ivan@mail.ru', required, autofocus)
+                    .psw-formpgroup.form-group
+                        label.control-label(for='Password') Пароль
+                        input#password.form-control(type='password', placeholder='Пароль', required)
+                    .psw-formpgroup.form-group
+                        label.control-label(for='ConfirmPassword') Подтвердите пароль
+                        input#confirmPassword.form-control(type='password', placeholder='Подтвердите пароль', required)
+                        span#password-help-block.sr-only.help-block Пароли не совпадают
+                    button#regButton.btn.btn-lg.btn-primary.btn-block(type='submit') Зарегистрироваться
+
+
+block custom_js
+    script(type='text/javascript').
+        $('a[href="#signin"]').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        });
+        $('a[href="#signup"]').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        });
+
+        var checkPassword = function(){
+            if ($("#password").val() !== "" && $("#confirmPassword").val() !==""){
+            if ($("#password").val() !== $("#confirmPassword").val()){
+                $("#password-help-block").removeClass("sr-only");
+                $(".psw-formpgroup").removeClass("has-success");
+                $(".psw-formpgroup").addClass("has-warning");
+                $('#regButton').attr('disabled', true);
+            } else {
+                $("#password-help-block").addClass("sr-only");
+                $(".psw-formpgroup").removeClass("has-warning");
+                $(".psw-formpgroup").addClass("has-success");
+                $('#regButton').attr('disabled', false);
+            }
+            }
+        }
+        $("#confirmPassword").keyup(function () {
+            checkPassword();
+        });
+        $("#password").keyup(function () {
+                checkPassword();
+        });
+
+        $("#reg").click(function () {
+                checkPassword();
+        }
+        );
+        CustomValidation.prototype.getInvaliditiesForHTML = function () {
+            return this.invalidities.join('. <br>');
+        }
+
+    script(type='text/javascript').
+        // Добавляем обработчик клика на кнопку отправки формы
+        submit.addEventListener('click', function (e) {
+            // Пройдёмся по всем полям
+            for (var i = 0; i < inputs.length; i++) {
+
+                var input = inputs[i];
+
+                // Проверим валидность поля, используя встроенную в JavaScript функцию checkValidity()
+                if (input.checkValidity() == false) {
+
+                    var inputCustomValidation = new CustomValidation(); // Создадим объект CustomValidation
+                    inputCustomValidation.checkValidity(input); // Выявим ошибки
+                    var customValidityMessage = inputCustomValidation.getInvalidities(); // Получим все сообщения об ошибках
+                    input.setCustomValidity(customValidityMessage); // Установим специальное сообщение об ошибке
+
+                    // Добавим ошибки в документ
+                    var customValidityMessageForHTML = inputCustomValidation.getInvaliditiesForHTML();
+                    input.insertAdjacentHTML('afterend', '<p class="error-message">' + customValidityMessageForHTML + '</p>')
+                    stopSubmit = true;
+
+                } // закончился if
+            } // закончился цикл
+
+            if (stopSubmit) {
+                e.preventDefault();
+            }
+        });
+
+    script(type='text/javascript',src='./js/signin_up.js')
+    script(type='text/javascript',src='./js/jqBootstrapValidation.js')
+
+
+

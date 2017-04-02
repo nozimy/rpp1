@@ -1,0 +1,15 @@
+.*
+*.log
+node_modules/
+node_modules/*
+*.md
+examples
+examples/*
+docs
+docs/*
+config/
+config/*
+public/
+public/*
+views/
+views/*

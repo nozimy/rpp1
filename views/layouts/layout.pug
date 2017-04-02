@@ -1,0 +1,24 @@
+doctype html
+html(lang ='ru')
+    head
+        include ../chunks/head
+    body
+        include ../chunks/header
+        #main.container-fluid.text-center
+            #leftnav.col-sm-2.sidenav.clearfix
+                p
+                    a(href='#') Link
+                p
+                    a(href='#') Link
+                p
+                    a(href='#') Link
+            #content.col-sm-8.text-left
+                block content
+            #rightnav.col-sm-2.sidenav
+                .well
+                    p ADS
+                .well
+                    p ADS
+        include ../chunks/footer
+        include ../chunks/js_at_bottom
+        block custom_js
