@@ -1,0 +1,37 @@
+var date = new Date(2014, 11, 31, 12, 30, 0);
+
+var options = {
+  era: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  weekday: 'long',
+  timezone: 'UTC',
+  hour: 'numeric',
+  minute: 'numeric',
+  second: 'numeric'
+};
+
+alert( date.toLocaleString("ru", options) ); // среда, 31 декабря 2014 г. н.э. 12:30:00
+alert( date.toLocaleString("en-US", options) ); // Wednesday, December 31, 2014 Anno Domini 12:30:00 PM
+
+
+alias ngs='ng serve --host 0.0.0.0 --port 8081 --live-reload-port 8081'
+
+tutorials:
+https://medium.com/@ladyleet/setting-up-your-first-angular-2-project-using-angular-material2-5db18a174165
+https://github.com/ladyleet/angular-material-sunday
+
+https://github.com/angular/material2/tree/master/src
+
+https://github.com/angular/flex-layout/wiki/Responsive-API
+https://tburleson-layouts-demos.firebaseapp.com/#/docs
+
+sidenav close on click on mdl and angular:
+  https://github.com/google/material-design-lite/issues/1246
+  
+Примеры
+  http://podboripoteki.ru/program/pervichka/
+  http://www.ipohelp.ru/queryform.html
+  
+  "styles.<%= styleExt %>",

@@ -1,0 +1,255 @@
+ <form [formGroup]="ipotekaForm" (ngSubmit)="onSubmit()" novalidate>
+    <!--<div class="form-group">-->
+    <!--<div formGroupName="main" class="well well-lg">-->
+    <md-card >
+        
+    <md-card-actions>
+        <button color="primary" md-raised-button type="submit" [disabled]="ipotekaForm.pristine">Создать</button>
+        <button md-raised-button type="reset" (click)="revert()" [disabled]="ipotekaForm.pristine">Сброс</button>
+    </md-card-actions>
+    
+        <md-card-title>Общие данные</md-card-title>
+        <md-card-content>
+            <md-list >
+            <md-list-item>
+                <span class="cl1">Регион</span>
+            
+                    <div class="cl2">
+                    <md-select placeholder="Регион"  formControlName="region_num" [(ngModel)]="selectedRegion" class="select-width">
+                        <!--<aria-label>{{ regions[0].region_num  }}</aria-label>-->
+                        <!--<md-select-label>"77"</md-select-label>-->
+                        <md-option value="ALL">Любой</md-option>
+                        <md-option *ngFor="let region of regions " [attr.selected]="selectedRegion==region.region_num ? true : null" [value]="region.region_num">{{ region.region_center }}</md-option>
+                    </md-select>
+                    
+                    <!--<md-input-container placeholder="Регион">-->
+                        <!--<aria-label>{{ regions[0].region_num  }}</aria-label>-->
+                        <!--<md-select-label>"77"</md-select-label>-->
+                    <!--    <input type="text" mdInput formControlName="region" [mdAutocomplete]="reg">-->
+                        
+                    <!--</md-input-container>-->
+                    <!--<md-autocomplete #reg="mdAutocomplete">-->
+                    <!--   <md-option *ngFor="let region of regions "  [value]="region.region_num">-->
+                    <!--       {{ region.region_num }}-->
+                    <!--   </md-option>-->
+                    <!--</md-autocomplete>-->
+                    
+                    {{selectedRegion}}
+                    </div>
+            </md-list-item>
+            <md-list-item>
+                <span class="cl1">Банк</span>
+                <div class="cl2">
+                    <md-select placeholder="Банк" formControlName="bank_num" [(ngModel)]="selectedBank" class="select-width">
+                        <md-option value="ALL">Любой</md-option>
+                        <md-option *ngFor="let bank of banks" [value]="bank.bank_num">{{ bank.shortName }}</md-option>
+                    </md-select>
+                </div>
+            </md-list-item>
+            <md-list-item>
+                <span class="cl1">Цель кредитования</span>
+                <div class="cl2">
+                    <md-select placeholder="Цель кредитования"  formControlName="aim" class="select-width">
+                        <md-option *ngFor="let aim of aims" [value]="aim.key">{{ aim.value }}</md-option>
+                    </md-select>
+                </div>
+            </md-list-item>
+            <md-list-item>
+                <span class="cl1">Рынок недвижимости</span>
+                <div class="cl2">
+                    <md-select placeholder="Рынок недвижимости"  formControlName="houseMarket">
+                        <md-option *ngFor="let houseMarket of houseMarkets" [value]="houseMarket.key">{{ houseMarket.value }}</md-option>
+                    </md-select>
+                </div>
+            </md-list-item>
+            <md-list-item>
+                <span class="cl1">Новостройка аккредитована</span>
+                <div class="cl2">
+                    <md-select placeholder=""  formControlName="buildingIsAccredited" class="max-width-50px">
+                        <md-option *ngFor="let accredit of accredits" [value]="accredit">{{ accredit }}</md-option>
+                    </md-select>
+                </div>
+            </md-list-item>
+            </md-list>
+            
+    <!--</div>-->
+            
+        </md-card-content>
+    </md-card>
+    
+    <!--<div formGroupName="creditTerms" class="well well-lg">-->
+    <md-card >
+        <h4>Условия кредита</h4>
+        <md-list >
+            <md-list-item>
+            
+            <span class="cl1">Валюта кредита</span>
+            
+            <div class="cl2">
+            
+                <md-select placeholder="Валюта кредита"  formControlName="currency">
+                    <md-option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</md-option>
+                </md-select>
+            
+            </div>
+            </md-list-item>
+            <md-list-item>
+            <span class="cl1">Ставка кредита</span>
+            <div class="cl2">
+                <md-input-container class="" >
+                    <input min="0" max="100" mdInput  type="number" placeholder="до  (%)"  formControlName="creditRate" maxlength="3">
+                    <!--<md-hint>HINT</md-hint>-->
+                    <!--<div ng-messages="ipotekaForm.creditRate.$error" ng-show="ipotekaForm.creditRate.$dirty">-->
+                    <!--  <div ng-message="required">This is required!</div>-->
+                    <!--</div>-->
+                    <!--<md-error>error</md-error>-->
+                </md-input-container>
+            </div>
+            </md-list-item>
+            <md-list-item>
+            <span class="cl1">Обеспечение кредита</span>
+            <div class="cl2">
+                <md-select placeholder="Обеспечение кредита" formControlName="creditSecurity" class="select-width">
+                    <md-option *ngFor="let loansecurity of loansecurities" [value]="loansecurity.key">{{ loansecurity.value }}</md-option>
+                </md-select>
+            </div>
+            </md-list-item>
+            <md-list-item>
+            <span class="cl1">Срок кредита</span>
+            <div class="cl2">
+                <md-input-container class="max-width-50px" >
+                    <input mdInput type="number" min="0" max="100" placeholder="от"  formControlName="creditTermFrom" maxlength="3">
+                </md-input-container>
+                <md-input-container class="max-width-50px">
+                    <input mdInput type="number" min="0" max="100" placeholder="до"  formControlName="creditTermTo" maxlength="3">
+                </md-input-container>
+                лет
+            </div>
+            </md-list-item>
+            <md-list-item>
+            <span class="cl1">Размер кредита</span>
+            <div class="cl2">
+                <md-input-container class="">
+                    <input mdInput type="number" min="0" placeholder="денежная единица"  formControlName="creditAmount">
+                </md-input-container>
+            </div>
+            </md-list-item>
+            <md-list-item>
+            <span class="cl1">Первоначальный взнос	</span>
+            <div class="cl2">
+                <md-input-container class="">
+                    <input mdInput type="number" min="0" max="100" placeholder="%"  formControlName="downPayment" maxlength="3">
+                </md-input-container>
+                
+            </div>
+            </md-list-item>
+            <md-list-item>
+            <span class="cl1">Подтверждение дохода</span>
+            <div class="cl2">
+                <md-select placeholder="" formControlName="incomeCheck" class="select-width">
+                    <md-option *ngFor="let incconfirm of incconfirms" [value]="incconfirm.key">{{ incconfirm.value }}</md-option>
+                </md-select>
+            </div>
+            </md-list-item>
+            <md-list-item>
+            
+            <span class="cl1">Срок рассмотрения заявки</span>
+            <div class="cl2">
+            
+                <md-input-container class="" class="md-secondary">
+                    <input mdInput type="number" min="0" placeholder="до "  formControlName="periodOfExam"> 
+                </md-input-container>
+                дней
+            </div>
+            </md-list-item>
+        </md-list>
+    <!--</div>-->
+    </md-card>
+    
+    <!--<div formGroupName="reqForBorrower" class="well well-lg">-->
+    <md-card >
+        <h4>Требования к заемщику</h4>
+        <md-list >
+        <md-list-item>
+                <span class="cl1">Возраст заемщика</span>
+                <div class="cl2">
+                    <md-input-container class="">
+                        <input mdInput min="18" max="120" placeholder=""  formControlName="borrowerAge">
+                    </md-input-container>
+                     лет
+                </div>
+        </md-list-item>
+        <md-list-item>
+                <span class="cl1">Регистрация по месту получения кредита</span>
+                <div class="cl2">
+                    <md-select placeholder="" formControlName="registrationIsRequired">
+                        <md-option *ngFor="let required of requireds" [value]="required.key">{{ required.value }}</md-option>
+                    </md-select>
+                </div>
+        </md-list-item>
+        <md-list-item>
+                <span class="cl1">Гражданство РФ</span>
+                <div class="cl2">
+                    <md-select placeholder="" formControlName="rusResidenceRequired">
+                        <md-option *ngFor="let required of requireds" [value]="required.key">{{ required.value }}</md-option>
+                    </md-select>
+                </div>
+        </md-list-item>
+        </md-list>
+    </md-card>
+    <!--</div>-->
+    
+    <!--<div formGroupName="repayTerm" class="well well-lg">-->
+    <md-card >
+        <h4>Условия погашения кредита</h4>
+        <md-list >
+        <md-list-item>
+            <span class="cl1">Платежи</span>
+            <div class="cl2">
+                <md-select placeholder="" formControlName="payment" class="select-width">
+                    <md-option *ngFor="let paymenttype of paymenttypes" [value]="paymenttype.key">{{ paymenttype.value }}</md-option>
+                </md-select>
+                <button md-icon-button  (click)='goToPaymentInfoPage();' mdTooltip="Что это такое?" >
+                    <!--(click)='goToPaymentInfoPage()';-->
+                    <md-icon>info</md-icon>
+                </button>
+            </div>
+        </md-list-item>
+        <md-list-item>
+            <span class="cl1">Досрочное погашение без санкций после</span>
+            <div class="cl2">
+                <md-input-container class="">
+                    <input mdInput type="number" min="0" max="100" placeholder=""  formControlName="prePayment">
+                </md-input-container>
+                 месяцев
+            </div>
+        </md-list-item>
+        </md-list >
+    </md-card>
+    <!--</div>-->
+    
+    <!--<div class="sortBy" class="well well-lg">-->
+    <md-card>
+        <h4>Сортировка результатов поиска</h4>
+        <md-list >
+        <md-list-item>
+            <span class="cl1">Сортировать по</span>
+            <div class="cl2">
+                <md-select placeholder="" formControlName="sortBy" class="select-width">
+                    <md-option *ngFor="let index of Indexes" [value]="index.key">{{ index.value }}</md-option>
+                </md-select>
+            </div>
+        </md-list-item>
+        </md-list >
+    <md-card-actions>
+        <button color="primary" md-raised-button type="submit" [disabled]="ipotekaForm.pristine">Создать</button>
+        <button md-raised-button type="reset" (click)="revert()" [disabled]="ipotekaForm.pristine">Сброс</button>
+    </md-card-actions>
+    </md-card>
+    <!--</div>-->
+    
+    <!--</div>-->
+</form>
+<p>Form value: {{ ipotekaForm.value | json }}</p>
+<p>Form status: {{ ipotekaForm.status | json }}</p>
+<!--<p>Street value: {{ ipotekaForm.get('repayTerm.payment').value}}</p>-->

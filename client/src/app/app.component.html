@@ -1,0 +1,56 @@
+<!-- Always shows a header, even in smaller screens. -->
+<!--class layout-dashboard-->
+<div class=" mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+  <header class="mdl-layout__header is-casting-shadow mdl-color-text--grey-800">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <!--<span class="mdl-layout-title">{{title}}</span>-->
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation. We hide it in small screens. -->
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+      <!--  <a class="mdl-navigation__link" routerLink="/app-samples" >SamplesComponent</a>-->
+      <!--  <a class="mdl-navigation__link" href="">Link</a>-->
+      <!--  <a class="mdl-navigation__link" href="">Link</a>-->
+        <a class="mdl-navigation__link" routerLink="/login" >Войти</a>
+      </nav>
+    </div>
+  </header>
+  
+  <div class="mdl-layout__drawer "> 
+  <!--mdl-color--grey-900 mdl-color-text--grey-50-->
+    <header class="drawer-header">
+        <a routerLink="/">
+            <h1 class="mdl-layout-title header-logo">{{title}}</h1>
+        </a>
+    </header>
+    
+    <nav class="mdl-navigation">
+      <a #mynavitem1 [class.selected]="mynavitem1.innerText === selectedNav" (click)="onSelectNav(mynavitem1.innerText)" class="mdl-navigation__link" routerLink="/app-samples" ><md-icon>extension</md-icon>SamplesComponent</a>
+      <a #mynavitem2 [class.selected]="mynavitem2.innerText === selectedNav" (click)="onSelectNav(mynavitem2.innerText)" class="mdl-navigation__link" routerLink="/queryform"><md-icon>credit_card</md-icon>Подобрать кредит</a>
+      <a #mynavitem3 [class.selected]="mynavitem3.innerText === selectedNav" (click)="onSelectNav(mynavitem3.innerText)" class="mdl-navigation__link" routerLink="/banks"><md-icon>account_balance</md-icon>Ипотечные банки</a>
+      <a #mynavitem4 [class.selected]="mynavitem4.innerText === selectedNav" (click)="onSelectNav(mynavitem4.innerText)" class="mdl-navigation__link" routerLink="/calculator"><md-icon>apps</md-icon>Ипотечный калькулятор</a>
+      <a #mynavitem5 [class.selected]="mynavitem5.innerText === selectedNav" (click)="onSelectNav(mynavitem5.innerText)" class="mdl-navigation__link" routerLink="/add-item"><md-icon>create</md-icon>Добавить</a>
+      
+    </nav>
+    
+    <footer class="drawer-footer"><div class="drawer-footer__links"><a href="https://youtube.com/c/codedojo" target="_blank" title="Канал на YouTube"><i class="fa fa-2x fa-youtube"></i></a><a href="https://vk.com/codedojo" target="_blank" title="Группа в ВКонтакте"><i class="fa fa-2x fa-vk"></i></a><a href="https://trello.com/b/HIKnMb1X/-" target="_blank" title="Планы на будущее в Trello"><i class="fa fa-2x fa-trello"></i></a><a href="https://github.com/codedojo/issues/new" target="_blank" title="Сообщить об ошибке"><i class="fa fa-2x fa-exclamation-circle"></i></a><a href="mailto:support@codedojo.ru" title="Написать в службу поддержки"><i class="fa fa-2x fa-question-circle"></i></a></div><a href="/terms" target="_blank">Пользовательское соглашение</a></footer>
+  </div>
+  <main class="mdl-layout__content">
+    <div class="page-content"><!-- Your content goes here -->
+        <!-- <h1>{{title}}</h1>-->
+         <!--{{users}}-->
+        <!--<ul>-->
+        <!--  <li *ngFor="let user of users">-->
+        <!--    <span >{{user.username}}</span>-->
+        <!--  </li>-->
+        <!--</ul>-->
+        <router-outlet></router-outlet>
+
+    </div>
+  </main>
+</div>
+
+
+
+

@@ -1,0 +1,24 @@
+.sp1 {
+    position: absolute;
+    right: 10px;
+}
+.sp2 {
+    position: absolute;
+    left: 10px;
+}
+.cl1 {
+    /*position: absolute;*/
+    /*right: 10px;*/
+    margin-right: 20px;
+}
+.cl2 {
+    position: absolute;
+    left: 40%;
+}
+.select-width{
+    min-width: 250px;
+}
+
+.max-width-50px{
+   max-width: 50px;
+}

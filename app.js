@@ -34,19 +34,38 @@ log.debug("process.env.NODE_ENV = "+ process.env.NODE_ENV || config.get('node_en
 
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'pug');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger(('dev')));                 // todo: logger - различные форматы dev, default, common, combined
+
+// configure app to use bodyParser()
+// this will let us get the data from a POST
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());               // req.body....
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());                  // req.coolies... // todo: cookieParser('your secret')
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'client/dist')));
+
+
+// app.use(function(req, res, next) {
+
+//   next();
+// });
+
+app.use(function(req, res, next) {
+  //res.setHeader('charset', 'utf-8')
+  //Enable CORS
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST,DELETE, PUT");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 
 app.use('/', routes);
+
 
 
 
@@ -69,7 +88,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   //res.render('error');
 
-    res.writeHead(200, {"Content-Type": "application/json"});
+    res.writeHead(err.status, {"Content-Type": "application/json"});
     var json = JSON.stringify({
         Error: err
     });

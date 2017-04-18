@@ -11,12 +11,6 @@ var schema = new Schema({
         unique: true,
         required: true
     },
-    hashedPassword: {
-        type: String,
-    },
-    salt: {
-        type: String,
-    },
     created: {
         type: Date,
         default: Date.now
@@ -24,12 +18,18 @@ var schema = new Schema({
     firstName: {
         type: String
     },
-    secondName: {
+    lastName: {
         type: String
     },
     phone: String,
     birthDate: {
         type: Date
+    },
+    hashedPassword: {
+        type: String, select: false 
+    },
+    salt: {
+        type: String, select: false 
     }
 });
 
@@ -87,25 +87,27 @@ schema.statics.authorize = function(username, password, callback) {
     ], callback);
 };
 
-schema.statics.createNew = function(username, password, firstName, secondName, birthDate, callback) {
+schema.statics.createNew = function(userSetup, callback) {
     var User = this;
 
     async.waterfall([
         function(callback) {
-            User.findOne({username: username}, callback); // Проверим существует ли уже такой пользователь
+            User.findOne({username: userSetup.username}, callback); // Проверим существует ли уже такой пользователь
         },
         function(user, callback) {
             if (user) {
                 // Если такой пользователь уже существует
                 callback(new AuthError("Такой пользователь уже существует"));
             } else {
+                //phone = phone || '';
                 // Если такого пользователя еще нет в базе
                 var user = new User({
-                    username: username,
-                    password: password, //userFields['passwordInput'],
-                    firstName: firstName, //userFields['firstNameInput'],
-                    secondName: secondName, //userFields['secondNameInput'],
-                    birthDate: birthDate //userFields['birthDateInput'],
+                    username: userSetup.username,
+                    password: userSetup.password, //userFields['passwordInput'],
+                    firstName: userSetup.firstName || '', //userFields['firstNameInput'],
+                    lastName: userSetup.lastName || '', //userFields['secondNameInput'],
+                    birthDate: userSetup.birthDate, //userFields['birthDateInput'],
+                    phone: userSetup.phone || ''
                 });
                 user.save(function(err) {
                     if (err) throw err;
