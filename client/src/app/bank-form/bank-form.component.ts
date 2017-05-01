@@ -37,7 +37,7 @@ export class BankFormComponent implements OnInit {
     this.bankForm = this.fb.group({
       //bank_num: ['', Validators.required ],
       region_num: ['', Validators.required ],
-      shortName: '',
+      shortName:  ['', Validators.required ],
       fullName: ['', Validators.required ]
     });
   }
@@ -52,7 +52,7 @@ export class BankFormComponent implements OnInit {
   onSubmit() {
     this.bank = this.prepareSaveBank();
     
-    if (!this.bank || !this.bank.bank_num) { return; }
+    if (!this.bank ) { return; } //|| !this.bank.bank_num
     console.log(this.bank);
     
     this.httpService.createBank(this.bank)
@@ -60,7 +60,7 @@ export class BankFormComponent implements OnInit {
             console.log('new added bank');
             console.log(bank);
             this.banks.push(bank);
-            this.incBankNum();
+            //this.incBankNum();
             // this.selectedHero = null;
           })
           .catch((reason) =>{ this.message = "Ошибка создания."});
@@ -79,7 +79,7 @@ export class BankFormComponent implements OnInit {
     // return new `Bank` object containing a combination of original bank value(s)
     // and deep copies of changed form model values
     const saveBank: Bank = {
-      bank_num: this.bank.bank_num as number,
+      bank_num: null,//this.bank.bank_num as number,
       shortName: formModel.shortName as string,
       fullName: formModel.fullName as string,
       // addresses: formModel.secretLairs // <-- bad!
@@ -104,18 +104,18 @@ export class BankFormComponent implements OnInit {
         console.log(banks);
         this.banks = banks})
         .then(banks =>{
-          this.incBankNum();
+          //this.incBankNum();
         });
   }
   
-  incBankNum(): void {
-    if (this.banks ){
-      this.bank.bank_num = this.banks.length
-      this.bank.bank_num++;
-    } else {
-      this.bank.bank_num = null;
-    }
-  }
+  // incBankNum(): void {
+  //   if (this.banks ){
+  //     this.bank.bank_num = this.banks.length
+  //     this.bank.bank_num++;
+  //   } else {
+  //     this.bank.bank_num = null;
+  //   }
+  // }
   
   ngOnInit() {
     this.getRegions();

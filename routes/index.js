@@ -19,9 +19,9 @@ var router = express.Router();
 //
 // });
 
-router.get('/', function(req, res){
-    res.send("Only API")
-});
+// router.get('/', function(req, res){
+//     res.send("Only API")
+// });
 
 router.use('/api', require('./api'));
 

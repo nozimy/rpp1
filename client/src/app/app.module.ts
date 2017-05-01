@@ -14,6 +14,8 @@ import { UsersService } from './users.service';
 import { TableComponent }  from './table.component';
 
 import { HttpService} from './http.service';
+import { IpotekaService} from './ipoteka.service';
+
 import { DialogExampleComponent } from './dialog-example/dialog-example.component';
 import { SnackCompComponent } from './snack-comp/snack-comp.component';
 import { SamplesComponent } from './samples/samples.component';
@@ -25,9 +27,16 @@ import { LoginComponent } from './login/login.component';
 import { AddItemComponent } from './add-item/add-item.component';
 import { BankFormComponent } from './bank-form/bank-form.component';
 import { IpotekaFormComponent } from './ipoteka-form/ipoteka-form.component';
-
-import { IpotekaService} from './ipoteka.service';
 import { BankListComponent } from './bank-list/bank-list.component';
+import { IpotekaSearchFormComponent } from './ipoteka-search-form/ipoteka-search-form.component';
+import { IpotekiListComponent } from './ipoteki-list/ipoteki-list.component';
+import { ProgramsComponent } from './programs/programs.component';
+
+import { DialogsService } from './dialogs.service';
+import { InfoPageComponent } from './info-page/info-page.component';
+
+
+
 
 @NgModule({
   imports: [
@@ -44,7 +53,7 @@ import { BankListComponent } from './bank-list/bank-list.component';
     DialogExampleComponent,
     SnackCompComponent
     ],
-  providers: [UsersService, HttpService, IpotekaService],
+  providers: [UsersService, HttpService, IpotekaService, DialogsService],
   declarations: [
     AppComponent,
     TableComponent,
@@ -59,7 +68,11 @@ import { BankListComponent } from './bank-list/bank-list.component';
     AddItemComponent,
     BankFormComponent,
     IpotekaFormComponent,
-    BankListComponent
+    BankListComponent,
+    IpotekaSearchFormComponent,
+    IpotekiListComponent,
+    ProgramsComponent,
+    InfoPageComponent
   ],
   
   bootstrap: [AppComponent]

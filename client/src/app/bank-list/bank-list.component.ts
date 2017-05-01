@@ -35,6 +35,7 @@ export class BankListComponent implements OnInit {
         this.regions = regions});
   }
   getBanks(): void {
+    this.selectedRegion = 'ALL';
     this.httpService.getBanks()
         .then(banks => {
         this.banks = banks;

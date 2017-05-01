@@ -33,5 +33,22 @@ sidenav close on click on mdl and angular:
 Примеры
   http://podboripoteki.ru/program/pervichka/
   http://www.ipohelp.ru/queryform.html
+  http://www.banki.ru/products/hypothec/search/
   
   "styles.<%= styleExt %>",
+  
+  
+  --- GIT ---
+   git init
+   --
+   git add .
+   git add *
+   git add --all
+   //git commit -am "<commit message>"
+   //git push
+   git add . --force
+   --
+   git commit -m "ng-game initial commit"
+   git remote add origin git@github.com:nozimy/ng-game.git
+   git remote -v
+   git push origin master

@@ -8,7 +8,7 @@ var async = require('async');
 //router.get('/user/:username', require('./user-route').getOne);
 router.use('/users', require('./users-route'));
 router.use('/banks', require('./banks-route'));
-router.use('/ipoteka', require('./ipoteka-route'));
+router.use('/ipoteki', require('./ipoteki-route'));
 router.get('/regions', function(req, res, next){
     async.waterfall([
         function (callback) {

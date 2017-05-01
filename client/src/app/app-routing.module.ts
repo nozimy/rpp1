@@ -10,6 +10,9 @@ import { BanksComponent } from './banks/banks.component';
 
 import { LoginComponent } from './login/login.component';
 import { AddItemComponent } from './add-item/add-item.component';
+import { ProgramsComponent } from './programs/programs.component';
+import { InfoPageComponent } from './info-page/info-page.component';
+
 
 
 const routes: Routes = [
@@ -21,7 +24,10 @@ const routes: Routes = [
   { path: 'calculator',   component: CalculatorComponent },
   { path: 'banks',   component: BanksComponent },
   { path: 'login',   component: LoginComponent },
-  { path: 'add-item',   component: AddItemComponent }
+  { path: 'add-item',   component: AddItemComponent },
+  { path: 'programs/:id',   component: ProgramsComponent },
+  { path: 'queryform/:bank_id',   component: QueryformComponent },
+  { path: 'info',   component: InfoPageComponent }
 
   
   

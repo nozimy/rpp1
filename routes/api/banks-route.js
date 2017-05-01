@@ -90,18 +90,23 @@ function postBank(req, res, next){
                 return res.end(bankJSON);
                 // return res.send({ status: 'OK', bankJSON });
             } else {
+                console.log(" BANK begin   if (!err) {}  } ELSE {");
                 console.log(err);
                 if(err.name == 'ValidationError') {
+                    console.log("BANK begin   if(err.name == 'ValidationError')");
                     res.statusCode = 400;
                     res.send({ error: 'Validation error' });
                 }if(err.name == 'BankError') {
+                    console.log("begin   if(err == BankError)");
                     res.statusCode = 400;
                     res.send({ error: 'Record with the same bank_num is already existed in database'});
-                } else {
-                    res.statusCode = 500;
-                    res.send({ error: 'Server error' });
-                    log.error('Internal error(%d): %s',res.statusCode,err.message);
-                }
+                 } 
+                //else {
+                //     console.log("BANK begin   res.statusCode = 500; res.send({ error: 'Server error' });");
+                //     res.statusCode = 500;
+                //     res.send({ error: 'Server error' });
+                //     log.error('Internal error(%d): %s',res.statusCode,err.message);
+                // }
                 
             }
         });
@@ -157,6 +162,7 @@ function deleteBank(req, res, next){
     }}
     );
 }
+
 function putBank(req, res, next){
     res.send('This is not implemented now');
 }

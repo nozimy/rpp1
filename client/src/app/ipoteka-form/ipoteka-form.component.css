@@ -22,3 +22,20 @@
 .max-width-50px{
    max-width: 50px;
 }
+
+.check-section{
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+.check-margin{
+    margin: 0 10px;
+}
+
+.card-bottom {
+    /*background-color: rgba(217, 255, 245, 0.85);*/
+    /*border-color: rgba(217, 255, 245, 0.85);*/
+    border-bottom-style: groove;
+    border-bottom-color: rgba(217, 255, 245, 0.85);
+}

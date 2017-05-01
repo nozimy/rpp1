@@ -22,17 +22,30 @@ schema.statics.createNew = function(bankSetup, callback) {
 
     async.waterfall([
         function(callback) {
-            Bank.findOne({bank_num: bankSetup.bank_num}, callback); // Проверим существует ли уже такая запись
+            //Bank.findOne({"bank_num": bankSetup.bank_num}, callback); // Проверим существует ли уже такая запись
+            var countOfCollections;
+                Bank.count({}, function(err, c){
+                    if (err) {
+                        //console.log('Error during counting collections in Ipoteka document');
+                        callback(new BankError("Error during counting collections in Bank document"));
+                    } else {
+                        countOfCollections = c;
+                        // console.log('countOfCollections = c;');
+                        // console.log(c);
+                        callback(null,countOfCollections);
+                    }
+                });
             //callback(null, bank);
         },
-        function(bank, callback) {
-            if (bank) {
+        function(countOfCollections, callback) {
+            if (countOfCollections === null) {
                 // Если такая запись уже существует
-                callback(new BankError("Такая запись со схожим bank_num уже существует в базе данных"));
+                //callback(new BankError("Такая запись со схожим bank_num уже существует в базе данных"));
+                callback(new BankError("Error during counting collections in Bank document"));
             } else {
                 // Если такой записи еще нет в базе
                 var bank = new Bank({
-                    bank_num: bankSetup.bank_num,
+                    bank_num: 1 + countOfCollections,//bankSetup.bank_num,
                     region_num: bankSetup.region_num,
                     shortName: bankSetup.shortName,
                     fullName: bankSetup.fullName

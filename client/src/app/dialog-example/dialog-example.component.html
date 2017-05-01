@@ -1,9 +1,120 @@
-<h1 md-dialog-title class="primary-color">hey title</h1>
-<md-dialog-content class="accent-color">
-  hey this is the content of the dialog
+<h1 md-dialog-title>{{selectedIpoteka.ipoteka_name}} </h1>
+
+<md-dialog-content>
+<b>Общие данные</b>
+<div class="flex-wrap">
+  
+  <div class='flex-child-1'>
+    <p md-line>Банк: </p>
+    <p md-line>Регион: </p>
+    <p md-line>Цель кредитования: </p>
+    <p md-line>Рынок недвижимости: </p>
+    <p md-line>Новостройка аккредитована: </p>
+  </div>
+  <div class='flex-child-1'>
+    <p md-line>{{selectedIpoteka.bank}}</p>
+    <p md-line>{{selectedIpoteka.region}}</p>
+    <p md-line>{{selectedIpoteka.aim}} </p>
+    <p md-line>{{selectedIpoteka.houseMarket}} </p>
+    <p md-line>{{selectedIpoteka.buildingIsAccredited}}</p>
+  </div>
+</div>
+<hr>
+  <!--<md-list>Общие данные-->
+  <!--    <md-list-item>  -->
+  <!--       <p md-line>Банк: {{selectedIpoteka.bank_num}}</p>-->
+  <!--       <p md-line>Регион: {{selectedIpoteka.aim}} </p>-->
+  <!--       <p md-line>Цель кредитования: {{selectedIpoteka.houseMarket}} </p>-->
+  <!--       <p md-line>Рынок недвижимости: {{selectedIpoteka.buildingIsAccredited}}</p>-->
+  <!--    </md-list-item>-->
+  
+  <b>Условия кредита</b>
+  <div class="flex-wrap">
+  
+  <div class='flex-child-1'>
+    <p md-line>Валюта кредита: </p>
+    <p md-line>Ставка кредита: </p>
+    <p md-line>Обеспечение кредита:  </p>
+    <p md-line>Срок кредита: </p>
+    <p md-line>Размер кредита:  </p>
+    <p md-line>Первоначальный взнос:  </p>
+    <p md-line>Подтверждение дохода:  </p>
+    <p md-line>Срок рассмотрения заявки: </p>
+  </div>
+  <div class='flex-child-1'>
+    <p md-line>{{selectedIpoteka.currency}} </p>
+    <p md-line>{{selectedIpoteka.creditRateFrom}} - {{selectedIpoteka.creditRateTo}} %</p>
+    <p md-line>{{selectedIpoteka.creditSecurity}}</p>
+    <p md-line>{{selectedIpoteka.creditTermFrom}} - {{selectedIpoteka.creditTermTo}} лет</p>
+    <p md-line>{{selectedIpoteka.creditAmountFrom}} - {{selectedIpoteka.creditAmountTo}} {{selectedIpoteka.currency}}</p>
+    <p md-line>от {{selectedIpoteka.downPayment}} %</p>
+    <p md-line>{{selectedIpoteka.incomeCheck}} </p>
+    <p md-line>до {{selectedIpoteka.periodOfExam}} дней</p>
+  </div>
+</div>
+<hr>
+  <!--<md-list-item>-->
+  <!--    <p md-line>Валюта кредита: {{selectedIpoteka.currency}}</p>-->
+  <!--    <p md-line>Ставка кредита: {{selectedIpoteka.creditRateFrom}} - {{selectedIpoteka.creditRateTo}}</p>-->
+  <!--    <p md-line>Обеспечение кредита: {{selectedIpoteka.creditSecurity}}</p>-->
+  <!--    <p md-line>Срок кредита: {{selectedIpoteka.creditTermFrom}} - {{selectedIpoteka.creditTermTo}}</p>-->
+  <!--    <p md-line>Размер кредита: {{selectedIpoteka.creditAmountFrom}} - {{selectedIpoteka.creditAmountTo}}</p>-->
+  <!--    <p md-line>Первоначальный взнос: {{selectedIpoteka.downPayment}}</p>-->
+  <!--    <p md-line>Подтверждение дохода: {{selectedIpoteka.incomeCheck}}</p>-->
+  <!--    <p md-line>Срок рассмотрения заявки: {{selectedIpoteka.periodOfExam}}</p>-->
+  <!--</md-list-item>-->
+  
+  <b>Требования к заемщику</b>
+  <div class="flex-wrap">
+  
+  <div class='flex-child-1'>
+    <p md-line>Возраст заемщика: </p>
+    <p md-line>Регистрация по месту получения кредита: </p>
+    <p md-line>Гражданство РФ: </p>
+    
+  </div>
+  <div class='flex-child-1'>
+    <p md-line>{{selectedIpoteka.borrowerAgeFrom}} - {{selectedIpoteka.borrowerAgeTo}} лет</p>
+    <p md-line>{{selectedIpoteka.registrationIsRequired}} </p>
+    <p md-line>{{selectedIpoteka.rusResidenceRequired}} </p>
+  </div>
+</div>
+<hr>
+  <!--<md-list-item>-->
+  <!--    <p md-line>Возраст заемщика: {{selectedIpoteka.borrowerAgeFrom}} - {{selectedIpoteka.borrowerAgeTo}}</p>-->
+  <!--    <p md-line>Регистрация по месту получения кредита: {{selectedIpoteka.registrationIsRequired}}</p>-->
+  <!--    <p md-line>Гражданство РФ: {{selectedIpoteka.rusResidenceRequired}}</p>-->
+  <!--</md-list-item>-->
+  
+  <b>Условия погашения кредита</b>
+  <div class="flex-wrap">
+  
+  <div class='flex-child-1'>
+    <p md-line>Платежи: </p>
+  </div>
+  <div class='flex-child-1'>
+    <p md-line>{{selectedIpoteka.payment}} </p>
+  </div>
+</div>
+  <!--<md-list-item>-->
+  <!--    <p md-line>Платежи: {{selectedIpoteka.payment}}</p>-->
+      <!--<p md-line>Досрочное погашение без санкций после: {{selectedIpoteka.prePayment}}</p>-->
+  <!--</md-list-item>-->
+   <!--<md-list-item> {{selectedIpoteka.bank_num}} </md-list-item>-->
+   <!--<md-list-item> {{selectedIpoteka.aim}} </md-list-item>-->
+   <!--<md-list-item> {{selectedIpoteka.houseMarket}} </md-list-item>-->
+   <!--<md-list-item> {{selectedIpoteka.buildingIsAccredited}} </md-list-item>-->
+  <!--</md-list>  -->
+  
+  
 </md-dialog-content>
-<md-dialog-actions>
-  <button md-raised-button color="primary" md-dialog-close>
-    close button
-  </button>  
+
+<md-dialog-actions >
+  <button type="button" md-button md-dialog-close align='right'
+      (click)="dialogRef.close(true)">Закрыть</button>
+  <!--<button type="button" md-raised-button -->
+  <!--          (click)="dialogRef.close(true)">OK</button>-->
+  <!--<button md-raised-button color="primary" md-dialog-close>-->
+  <!--  close button-->
+  <!--</button> -->
 </md-dialog-actions>

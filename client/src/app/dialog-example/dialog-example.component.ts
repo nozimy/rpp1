@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MdDialogRef } from '@angular/material';
+
+import { Ipoteka } from './../ipoteka';
+import { IpotekaSearchFormComponent } from './../ipoteka-search-form/ipoteka-search-form.component';
 
 @Component({
   selector: 'app-dialog-example',
@@ -7,7 +11,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogExampleComponent implements OnInit {
 
-  constructor() { }
+  public selectedIpoteka: any;
+  
+  constructor(
+    public dialogRef: MdDialogRef<DialogExampleComponent>  
+  ) { }
 
   ngOnInit() {
   }

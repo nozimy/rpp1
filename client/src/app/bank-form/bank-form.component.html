@@ -5,8 +5,8 @@
     <md-list >
     <md-list-item>
       <span md-line>Короткое название</span>
-      <md-input-container class="" style="max-width: 400px;" md-line>
-        <input mdInput #shortName maxlength="50" placeholder=""  formControlName="shortName">
+      <md-input-container class="" style="max-width: 400px;" md-line >
+        <input mdInput required #shortName maxlength="50" placeholder=""  formControlName="shortName" >
         <md-hint align="end">{{shortName.value.length}} / 50</md-hint>
       </md-input-container>
     </md-list-item>
@@ -14,8 +14,8 @@
     </md-list-item>
     <md-list-item>
       <span md-line>Полное название</span>
-      <md-input-container class="" style="max-width: 400px;" md-line>
-        <textarea  mdInput #fullName placeholder=""  formControlName="fullName"></textarea>
+      <md-input-container class="" style="max-width: 400px;" md-line >
+        <textarea  mdInput required #fullName placeholder=""  formControlName="fullName" ></textarea>
       </md-input-container>
     </md-list-item>
     <md-list-item>
@@ -23,7 +23,7 @@
     <md-list-item>
       
       <span md-line>Регион</span>
-      <md-select placeholder="" [(ngModel)]="selectedRegion" formControlName="region_num" class="select-width" style="max-width: 200px;" md-line>
+      <md-select placeholder="" [(ngModel)]="selectedRegion" formControlName="region_num" class="select-width" style="max-width: 200px;" md-line required>
          <md-option *ngFor="let region of regions" [value]="region.region_num">{{ region.region_center }}</md-option>
       </md-select>{{selectedRegion}}
     <!--</div>-->
@@ -32,26 +32,27 @@
     </md-list >
   </md-card-content>
   <md-card-actions>
-    <button color="primary" md-raised-button type="submit" [disabled]="bankForm.pristine">Создать</button>
-    <button  md-raised-button type="reset" (click)="revert()" [disabled]="bankForm.pristine">Сброс</button>
+    <button color="primary" md-raised-button type="submit" [disabled]="bankForm.status == 'INVALID'">Создать</button>
+    <button  md-raised-button type="reset"  [disabled]="bankForm.pristine">Сброс</button>
+    <!--(click)="revert()"-->
   </md-card-actions>
   </md-card>
 </form>
 {{message}} <br>
-<p>bank.bank_num:</p> {{bank.bank_num}}
-<br>
+<!--<p>bank.bank_num:</p> {{bank.bank_num}}-->
+<!--<br>-->
 
-<p>Form value: {{ bankForm.value | json }}</p>
-<p>Form status: {{ bankForm.status | json }}</p>
-<p>shortName value: {{ bankForm.get('shortName').value }}</p>
-<p>shortName status: {{ bankForm.get('shortName').status }}</p>
-<p>shortName pristine: {{ bankForm.get('shortName').pristine }}</p>
+<!--<p>Form value: {{ bankForm.value | json }}</p>-->
+<!--<p>Form status: {{ bankForm.status | json }}</p>-->
+<!--<p>shortName value: {{ bankForm.get('shortName').value }}</p>-->
+<!--<p>shortName status: {{ bankForm.get('shortName').status }}</p>-->
+<!--<p>shortName pristine: {{ bankForm.get('shortName').pristine }}</p>-->
 <!--opposite: dirty-->
-<p>shortName untouched: {{ bankForm.get('shortName').untouched }}</p>
+<!--<p>shortName untouched: {{ bankForm.get('shortName').untouched }}</p>-->
 <!--opposite: touched-->
 
-<h4>shortName change log</h4>
-<div *ngFor="let shortName of shortNameChangeLog">{{shortName}}</div>
+<!--<h4>shortName change log</h4>-->
+<!--<div *ngFor="let shortName of shortNameChangeLog">{{shortName}}</div>-->
 
 <!--<h2>Добавить банк</h2>-->
 <!--<form [formGroup]="bankForm" novalidate>-->
